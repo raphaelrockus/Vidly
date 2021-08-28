@@ -37,6 +37,12 @@ namespace Vidly.Controllers
             return Content(String.Format("pageIndex={0}&sortBy={1}",pageIndex, sortBy));
         }
 
+        //Attribute Routing
+        //For constraints we use ':' and regex for regular expressions
+        //We can add many more constraints with another ':'
+        //For the complete list of constraints
+        //ASP.NET MVC Attribute Route Constraints
+        [Route("movies/released/{year}/{month:regex(\\d{4}):range(1,12)}")]
         public ActionResult ByReleaseDate(int year, byte month)
         {
             return Content(year + "/" + month);
