@@ -31,6 +31,18 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
+        //Model Binding
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            //To persist the addition on the database
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
+
+
         public ViewResult Index()
         {
             //as is, the query is not executed at this point but when we 
