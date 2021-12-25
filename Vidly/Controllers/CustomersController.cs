@@ -33,9 +33,28 @@ namespace Vidly.Controllers
 
         //Model Binding
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
-            _context.Customers.Add(customer);
+
+            if(customer.Id == 0)
+                _context.Customers.Add(customer);
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+
+                //TryUpdateModel(customerInDb);
+                //Microsfot solution but shouldn't be used because it updates every properties
+                //Security issue...
+                //Instead : 
+
+                //AutoMapper to map values
+                //Mapper.Map(customer, customerInDb);
+
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+            }
             //To persist the addition on the database
             _context.SaveChanges();
 
