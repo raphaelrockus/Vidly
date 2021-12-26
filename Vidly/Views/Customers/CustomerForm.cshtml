@@ -8,6 +8,7 @@
 
 @using (Html.BeginForm("Save", "Customers"))
 {
+    @Html.ValidationSummary(true, "Please fix the following errors")
 <div class="form-group">
     @Html.LabelFor(m => m.Customer.Name)
     @* What's really nice is that by using this TextBoxFor property
@@ -17,14 +18,14 @@
     @Html.ValidationMessageFor(m=>m.Customer.Name)
 </div>
 <div class="form-group">
+    @Html.LabelFor(m => m.Customer.MembershipTypeId)
+    @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
+</div>
+<div class="form-group">
     <label for="Birthdate">Date of Birth</label>
     @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
     @Html.ValidationMessageFor(m => m.Customer.Birthdate)
-</div>
-<div class="form-group">
-    @Html.LabelFor(m => m.Customer.MembershipTypeId)
-    @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
-    @Html.ValidationMessageFor(m=>m.Customer.MembershipTypeId)
 </div>
 <div class="checkbox">
     <label>
