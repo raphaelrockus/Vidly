@@ -12,7 +12,7 @@ namespace Vidly.Models
         {
             //validation context gives to opportunity to check for other part of the model
             var customer = (Customer)validationContext.ObjectInstance;
-            if(customer.MembershipTypeId == 0 || customer.MembershipTypeId == 1)
+            if(customer.MembershipTypeId == MembershipType.Unknow || customer.MembershipTypeId == MembershipType.PayAsYouGo)
             {
                 return ValidationResult.Success;
             }
