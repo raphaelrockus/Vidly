@@ -13,14 +13,17 @@
     @* What's really nice is that by using this TextBoxFor property
         the validation is embedded in the TexBox automatically' *@
     @Html.TextBoxFor(m=>m.Customer.Name, new { @class = "form-control" })
+    @* Validation message placeholder *@
+    @Html.ValidationMessageFor(m=>m.Customer.Name)
 </div>
 <div class="form-group">
     <label for="Birthdate">Date of Birth</label>
     @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
 </div>
 <div class="form-group">
-    @Html.LabelFor(m=>m.Customer.MembershipTypeId)
-    @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id","Name"), "Select Membership Type", new { @class = "form-control" })
+    @Html.LabelFor(m => m.Customer.MembershipTypeId)
+    @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m=>m.Customer.MembershipTypeId)
 </div>
 <div class="checkbox">
     <label>
